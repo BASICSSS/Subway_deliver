@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prompt">배송물품 유형을 선택하세요</string>
+    <string-array name="obj_array">
+        <item>선택하세요</item>
+        <item>상자포장</item>
+        <item>비닐포장</item>
+        <item>문서</item>
+        <item>꽃</item>
+        <item>문서</item>
+        <item>기타</item>
+    </string-array>
+</resources>
