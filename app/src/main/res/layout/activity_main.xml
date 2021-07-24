@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Names" />
 
             <EditText
                 android:id="@+id/editText_main_country"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="Names" />
 
             <Button
                 android:id="@+id/button_main_insert"

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         frag2 = new Frag2(); //객체생성
         setFrag(0); // 첫프레그화면을
 
-        ///////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////
         mEditTextName = (EditText)findViewById(R.id.editText_main_name);
         mEditTextCountry = (EditText)findViewById(R.id.editText_main_country);
         mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
