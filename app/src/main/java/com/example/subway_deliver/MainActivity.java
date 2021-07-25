@@ -42,11 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_outPut;
 
 //////////////////////역여기서 부터는 db넣기 테스트
-    private static String IP_ADDRESS = "river97.cafe24.com";
-    private static String TAG = "subway_deliver";
-    private EditText mEditTextName;
-    private EditText mEditTextCountry;
-    private TextView mTextViewResult;
+
 
 
     @Override
@@ -78,33 +74,6 @@ public class MainActivity extends AppCompatActivity {
         frag2 = new Frag2(); //객체생성
         setFrag(0); // 첫프레그화면을
 
-        //////////////////////////////////////////////////////////////////////////////
-        mEditTextName = (EditText)findViewById(R.id.editText_main_name);
-        mEditTextCountry = (EditText)findViewById(R.id.editText_main_country);
-        mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
-
-        mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
-
-        Button buttonIsert = (Button)findViewById(R.id.button_main_insert);
-        buttonIsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String name = mEditTextName.getText().toString();
-                String country = mEditTextCountry.getText().toString();
-
-                InsertData task = new InsertData();
-                task.execute("https://"  + IP_ADDRESS + "/request_tmp_insert.php", name, country);
-
-
-                mEditTextName.setText("");
-                mEditTextCountry.setText("");
-            }
-        });
-
-
-
-
         ///////////////////////////////////////////////////////////////////////////
         tv_outPut = (TextView) findViewById(R.id.tv_outPut);
         String url = "https://river97.cafe24.com/http_test.html";
@@ -116,90 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public class InsertData extends AsyncTask<String, Void, String>{
-
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void  onPreExecute(){
-            super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(MainActivity.this, "please Wait", null, true, true);
-        }
-        @Override
-        protected void  onPostExecute(String result){
-            super.onPostExecute(result);
-
-            progressDialog.dismiss();
-            mTextViewResult.setText(result);
-            Log.d(TAG, "POST response = " + result);
-
-        }
-
-
-
-        @Override
-        protected String doInBackground(String... params) {
-            String name = (String)params[1];
-            String country = (String)params[2];
-
-            String serverURL = (String)params[0];
-
-            String postParameters = "name=" + name + "&country=" + country;
-
-            try{
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.connect();
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-
-                outputStream.flush();
-                outputStream.close();
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "POST response code = " + responseStatusCode);
-
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK){
-
-                    inputStream = httpURLConnection.getInputStream();
-                }
-                else{
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader  = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                while((line = bufferedReader.readLine()) != null){
-                    sb.append(line);
-
-                }
-
-                bufferedReader.close();
-
-                return sb.toString();
-
-
-            }catch (Exception e){
-
-                Log.d(TAG, "InsertData Error = " + e);
-
-                return new String("Error :" + e.getMessage());
-            }
-
-        }
-    }
 
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {

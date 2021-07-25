@@ -1,12 +1,15 @@
 package com.example.subway_deliver;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +26,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import static android.app.Activity.RESULT_OK;
 
 public class Frag1Sub extends Fragment {
 
     private View view;
     private TextView tmp;
+    private TextView user_id;
     private Spinner category_spinner;
     private EditText address;
     private EditText address2;
@@ -37,9 +48,15 @@ public class Frag1Sub extends Fragment {
     private EditText obj;
     private EditText receiver;
     private EditText phone;
+    private EditText user_phone;
     private LinearLayout category;
     private static final  int SEARCH_ADDRESS_ACTIVITY = 10000;
     private static final  int SEARCH_ADDRESS_ACTIVITY2 = 10001;
+
+    private static String IP_ADDRESS = "river97.cafe24.com";
+    private static String TAG = "subway_deliver";
+
+
 
     //    private final TextWatcher textWatcher = new TextWatcher() {                       // 한번 호출로 처리
 //        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,6 +91,7 @@ public class Frag1Sub extends Fragment {
         user = (EditText) view.findViewById(R.id.user_box);
         obj = (EditText) view.findViewById(R.id.delivery_obj_box);
         receiver = (EditText) view.findViewById(R.id.receive_person_box);
+        user_phone = (EditText) view.findViewById(R.id.user_phone_box);
         phone = (EditText) view.findViewById(R.id.receive_phone_num_box);
         request = (Button) view.findViewById(R.id.request_button);
         request.setEnabled(true);
@@ -254,9 +272,122 @@ public class Frag1Sub extends Fragment {
             }
         });
 
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = "testID";//일단 고정값 나중에 로그인 정보 받을것
+                String userName = user.getText().toString();
+                String userPhone = user_phone.getText().toString();
+                String pickupAdd = address.getText().toString();
+                String deliveryObj = obj.getText().toString();
+                String objType = category_spinner.getSelectedItem().toString();
+
+                String receiverName = receiver.getText().toString();
+                String receiverPhone = phone.getText().toString();
+                String deliveryAdd = address2.getText().toString();
+                Log.i("test", "data:" + "이건 클릭확인 테스트");
+
+                InsertData task = new InsertData();
+                task.execute("https://"  + IP_ADDRESS + "/request_tmp_insert.php", id, userName, userPhone, pickupAdd, deliveryObj, objType, receiverName, receiverPhone, deliveryAdd);
+
+
+
+            }
+        });
+
 
 
         return view;
+    }
+
+    public class InsertData extends AsyncTask<String, Void, String>{
+
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute(){
+
+            super.onPreExecute();;
+            progressDialog = ProgressDialog.show(getActivity(), "요청중입니다 기다려주십시오", null, true,true);
+        }
+
+        @Override
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response = " + result);
+
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String id = (String)params[1];
+            String userName = (String)params[2];
+            String userPhone = (String)params[3];
+            String pickupAdd = (String)params[4];
+            String deliveryObj = (String)params[5];
+            String objType = (String)params[6];
+            String receiverName = (String)params[7];
+            String receiverPhone = (String)params[8];
+            String deliveryAdd = (String)params[9];
+
+            String serverURL = (String)params[0];
+
+            String postParameters = "id=" + id + "&userName=" + userName + "&userPhone=" + userPhone+ "&pickupAdd=" + pickupAdd+ "&deliveryObj=" + deliveryObj+ "&objType=" + objType+ "&receiverName=" + receiverName+ "&receiverPhone=" + receiverPhone+ "&deliveryAdd=" + deliveryAdd;
+
+            try{
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code = " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK){
+                    inputStream = httpURLConnection.getInputStream();
+
+                }
+                else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while((line = bufferedReader.readLine()) != null ){
+
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                return sb.toString();
+
+
+            }catch (Exception e){
+
+                Log.d(TAG, "InsertData Error = " + e);
+
+                return new String("Error :" + e.getMessage());
+
+            }
+        }
     }
 
 
