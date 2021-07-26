@@ -22,7 +22,16 @@ import static android.os.FileUtils.copy;
 
 public class PopupActivity extends Activity {
     TextView tv_title;
-    TextView tv_content;
+    TextView tv_content; //원래 이거
+    TextView tv_user;
+    TextView tv_obj;
+    TextView tv_pickupAdd;
+    TextView tv_receiver;
+    TextView tv_receiverPhone;
+    TextView tv_receiverAdd;
+    TextView tv_objType;
+
+
     Button btn_ok;
     Button btn_left;
     Button btn_right;
@@ -39,6 +48,13 @@ public class PopupActivity extends Activity {
 
         String title = "";
         String content = "";
+        String user = ""; //셀럭트에서 발송인으로
+        String obj = "";
+        String objType = "";
+        String pickupAdd = "";
+        String receiver = "";
+        String receiverPhone = "";
+        String receiverAdd = "";
         String buttonCenter = "";
         String buttonLeft = "";
         String buttonRight = "";
@@ -86,30 +102,73 @@ public class PopupActivity extends Activity {
         } else if (type == PopupType.SELECT) {
             setContentView(R.layout.activity_popup_select);
             title = intent.getStringExtra("title");
-            content = intent.getStringExtra("content");
+//            content = intent.getStringExtra("content");
+            user = intent.getStringExtra("user");
+            obj = intent.getStringExtra("obj");
+            pickupAdd = intent.getStringExtra("pickupAdd");
+            receiver = intent.getStringExtra("receiver");
+            receiverPhone = intent.getStringExtra("receiverPhone");
+            receiverAdd = intent.getStringExtra("receiverAdd");
+            objType = intent.getStringExtra("objType");
             buttonLeft = intent.getStringExtra("buttonLeft");
             buttonRight = intent.getStringExtra("buttonRight");
             gravity = (PopupGravity) intent.getSerializableExtra("gravity");
 
             //UI 객체생성
             tv_title = (TextView) findViewById(R.id.tv_title);
-            tv_content = (TextView) findViewById(R.id.tv_content);
+            tv_user = (TextView) findViewById(R.id.tv_user);
+            tv_obj = (TextView) findViewById(R.id.tv_obj);
+            tv_pickupAdd = (TextView) findViewById(R.id.tv_pickupAdd);
+            tv_receiver = (TextView) findViewById(R.id.tv_receiver);
+            tv_receiverPhone = (TextView) findViewById(R.id.tv_receiverPhone);
+            tv_receiverAdd = (TextView) findViewById(R.id.tv_receiverAdd);
+            tv_objType = (TextView) findViewById(R.id.tv_objType);
+
             btn_left = (Button) findViewById(R.id.btn_left);
             btn_right = (Button) findViewById(R.id.btn_right);
 
             if(gravity == PopupGravity.CENTER){
                 tv_title.setGravity(Gravity.CENTER);
-                tv_content.setGravity(Gravity.CENTER);
+                tv_user.setGravity(Gravity.CENTER);
+                tv_obj.setGravity(Gravity.CENTER);
+                tv_pickupAdd.setGravity(Gravity.CENTER);
+                tv_receiver.setGravity(Gravity.CENTER);
+                tv_receiverPhone.setGravity(Gravity.CENTER);
+                tv_receiverAdd.setGravity(Gravity.CENTER);
+                tv_objType.setGravity(Gravity.CENTER);
+
             } else if(gravity == PopupGravity.LEFT){
                 tv_title.setGravity(Gravity.LEFT);
-                tv_content.setGravity(Gravity.LEFT);
+                tv_user.setGravity(Gravity.LEFT);
+                tv_obj.setGravity(Gravity.LEFT);
+                tv_pickupAdd.setGravity(Gravity.LEFT);
+                tv_receiver.setGravity(Gravity.LEFT);
+                tv_receiverPhone.setGravity(Gravity.LEFT);
+                tv_receiverAdd.setGravity(Gravity.LEFT);
+                tv_objType.setGravity(Gravity.LEFT);
+
             } else if(gravity == PopupGravity.RIGHT){
                 tv_title.setGravity(Gravity.RIGHT);
-                tv_content.setGravity(Gravity.RIGHT);
+                tv_user.setGravity(Gravity.RIGHT);
+                tv_obj.setGravity(Gravity.RIGHT);
+                tv_pickupAdd.setGravity(Gravity.RIGHT);
+                tv_receiver.setGravity(Gravity.RIGHT);
+                tv_receiverPhone.setGravity(Gravity.RIGHT);
+                tv_receiverAdd.setGravity(Gravity.RIGHT);
+                tv_objType.setGravity(Gravity.RIGHT);
+
             }
 
             tv_title.setText(title);
-            tv_content.setText(content);
+//            tv_user.setText(content);
+            tv_user.setText(user);
+            tv_obj.setText(obj);
+            tv_pickupAdd.setText(pickupAdd);
+            tv_receiver.setText(receiver);
+            tv_receiverPhone.setText(receiverPhone);
+            tv_receiverAdd.setText(receiverAdd);
+            tv_objType.setText(objType);
+
             btn_left.setText(buttonLeft);
             btn_right.setText(buttonRight);
 

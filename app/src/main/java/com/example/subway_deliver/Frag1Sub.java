@@ -55,8 +55,9 @@ public class Frag1Sub extends Fragment {
     private EditText phone;
     private EditText user_phone;
     private LinearLayout category;
-    private static final  int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private static final  int SEARCH_ADDRESS_ACTIVITY2 = 10001;
+    private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
+    private static final int SEARCH_ADDRESS_ACTIVITY2 = 10001;
+    private static final int POPUP_TYPE = 2;
 
     private static String IP_ADDRESS = "river97.cafe24.com";
     private static String TAG = "subway_deliver";
@@ -281,19 +282,24 @@ public class Frag1Sub extends Fragment {
             @Override
             public void onClick(View v) {
                 String id = "testID";//일단 고정값 나중에 로그인 정보 받을것
-                String userName = user.getText().toString();
                 String userPhone = user_phone.getText().toString();
-                String pickupAdd = address.getText().toString();
-                String deliveryObj = obj.getText().toString();
-                String objType = category_spinner.getSelectedItem().toString();
-
-                String receiverName = receiver.getText().toString();
-                String receiverPhone = phone.getText().toString();
-                String deliveryAdd = address2.getText().toString();
                 Log.i("test", "data:" + "이건 클릭확인 테스트");
 
-                InsertData task = new InsertData();
-                task.execute("https://"  + IP_ADDRESS + "/request_tmp_insert.php", id, userName, userPhone, pickupAdd, deliveryObj, objType, receiverName, receiverPhone, deliveryAdd);
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), PopupActivity.class);
+                intent.putExtra("type", PopupType.SELECT);
+                intent.putExtra("gravity", PopupGravity.LEFT);
+                intent.putExtra("title", "배송 정보");
+                intent.putExtra("user", "발송인 : " + user.getText().toString());
+                intent.putExtra("obj", "배송 물품 : " + obj.getText().toString());
+                intent.putExtra("pickupAdd", "픽업 주소 : " + address.getText().toString());
+                intent.putExtra("receiver", "수취인 : " + receiver.getText().toString());
+                intent.putExtra("receiverPhone", "수취인 번호 : " + phone.getText().toString());
+                intent.putExtra("receiverAdd", "배송 주소 : " + address2.getText().toString());
+                intent.putExtra("objType", "배송 견적 : " + category_spinner.getSelectedItem().toString());
+                intent.putExtra("buttonLeft", "예");
+                intent.putExtra("buttonRight", "아니요");
+                startActivityForResult(intent, 2);
 
 
 
@@ -323,14 +329,14 @@ public class Frag1Sub extends Fragment {
             progressDialog.dismiss();
             Log.d(TAG, "POST response = " + result);
 
-            Intent intent = new Intent(getActivity().getApplicationContext(), PopupActivity.class);
-            intent.putExtra("type", PopupType.SELECT);
-            intent.putExtra("gravity", PopupGravity.LEFT);
-            intent.putExtra("title", "요청 확인");
-            intent.putExtra("content", result + "\n + 고객 배송정보 추가예정");
-            intent.putExtra("buttonLeft", "예");
-            intent.putExtra("buttonRight", "아니오");
-            startActivityForResult(intent, 2);
+            user.setText("");
+            obj.setText("");
+            user_phone.setText("");
+            address.setText("");
+            receiver.setText("");
+            phone.setText("");
+            address2.setText("");
+            category_spinner.setSelection(0);
 
 
         }
@@ -408,7 +414,7 @@ public class Frag1Sub extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        Log.i("test", "onActivityResult");
+        Log.i("test", "onActivityResult" + requestCode);
 
         switch (requestCode) {
             case SEARCH_ADDRESS_ACTIVITY:
@@ -431,12 +437,16 @@ public class Frag1Sub extends Fragment {
                 }
                 break;
 
-            case 2:
-                if(requestCode == RESULT_OK){
+            case POPUP_TYPE:
+                if(resultCode == RESULT_OK){
                     PopupResult result = (PopupResult) intent.getSerializableExtra("result");
+
                     if(result == PopupResult.LEFT){
                         // 작성 코드
                         Toast.makeText(getActivity(), "LEFT", Toast.LENGTH_SHORT).show();
+                        Log.i("test", "데이터가 DB에 성공적으로 저장되었음");
+
+                        RequestComData();
 
                     } else if(result == PopupResult.RIGHT){
                         // 작성 코드
@@ -444,6 +454,7 @@ public class Frag1Sub extends Fragment {
 
                     }
                 }
+                break;
 
 
         }
@@ -461,6 +472,26 @@ public class Frag1Sub extends Fragment {
             request.setVisibility(View.GONE);
 
         }
+
+    }
+
+    private void RequestComData(){
+
+        String id = "testID";
+        String userName = user.getText().toString();
+        String userPhone = user_phone.getText().toString();
+        String pickupAdd = address.getText().toString();
+        String deliveryObj = obj.getText().toString();
+        String objType = category_spinner.getSelectedItem().toString();
+
+        String receiverName = receiver.getText().toString();
+        String receiverPhone = phone.getText().toString();
+        String deliveryAdd = address2.getText().toString();
+        Log.i("test", "data:" + "이건 클릭확인 테스트");
+
+        InsertData task = new InsertData();
+        task.execute("https://"  + IP_ADDRESS + "/request_tmp_insert.php", id, userName, userPhone, pickupAdd, deliveryObj, objType, receiverName, receiverPhone, deliveryAdd);
+
 
     }
 }

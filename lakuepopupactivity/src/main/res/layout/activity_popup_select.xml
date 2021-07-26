@@ -16,15 +16,95 @@
             android:textColor="#000"
             android:alpha="0.87"
             android:gravity="center"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/tv_user"
             android:textSize="14dp"
             android:textColor="#999999"
             android:alpha="0.87"
             android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_obj"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_pickupAdd"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="3dp"
+            android:background="#C2C2C2" />
+
+        <TextView
+            android:id="@+id/tv_receiver"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receiverPhone"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receiverAdd"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_objType"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_footer"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:alpha="0.87"
+            android:gravity="left"
+            android:text="배송을 요청 하시겠습니까?"
             android:layout_marginBottom="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
