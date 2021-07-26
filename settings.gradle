@@ -1,2 +1,3 @@
 rootProject.name = "Subway_deliver"
 include ':app'
+include ':lakuepopupactivity'

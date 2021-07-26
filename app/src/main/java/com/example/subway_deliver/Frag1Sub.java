@@ -26,6 +26,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.lakue.lakuepopupactivity.PopupActivity;
+import com.lakue.lakuepopupactivity.PopupGravity;
+import com.lakue.lakuepopupactivity.PopupResult;
+import com.lakue.lakuepopupactivity.PopupType;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -318,6 +323,16 @@ public class Frag1Sub extends Fragment {
             progressDialog.dismiss();
             Log.d(TAG, "POST response = " + result);
 
+            Intent intent = new Intent(getActivity().getApplicationContext(), PopupActivity.class);
+            intent.putExtra("type", PopupType.SELECT);
+            intent.putExtra("gravity", PopupGravity.LEFT);
+            intent.putExtra("title", "요청 확인");
+            intent.putExtra("content", result + "\n + 고객 배송정보 추가예정");
+            intent.putExtra("buttonLeft", "예");
+            intent.putExtra("buttonRight", "아니오");
+            startActivityForResult(intent, 2);
+
+
         }
 
 
@@ -415,6 +430,20 @@ public class Frag1Sub extends Fragment {
                     }
                 }
                 break;
+
+            case 2:
+                if(requestCode == RESULT_OK){
+                    PopupResult result = (PopupResult) intent.getSerializableExtra("result");
+                    if(result == PopupResult.LEFT){
+                        // 작성 코드
+                        Toast.makeText(getActivity(), "LEFT", Toast.LENGTH_SHORT).show();
+
+                    } else if(result == PopupResult.RIGHT){
+                        // 작성 코드
+                        Toast.makeText(getActivity(), "RIGHT", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
 
 
         }
