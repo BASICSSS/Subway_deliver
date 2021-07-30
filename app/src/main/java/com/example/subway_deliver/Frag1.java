@@ -35,10 +35,14 @@ public class Frag1 extends Fragment {
         //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity().getApplicationContext(), new LinearLayoutManager(this).getOrientation());
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rvw);
+
+        //데코
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(),1));
         recyclerView.addItemDecoration(new RecyclerDecoration(30));
+
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true); //리사이클러뷰에 크기변화가 없을때, 변화하지 못하게 해 비용을 줄임 (리사이클러뷰에 목적성과 부합)
 
         arrayList = new ArrayList<>();
 

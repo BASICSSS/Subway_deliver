@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.lakue.lakuepopupactivity.PopupActivity;
 import com.lakue.lakuepopupactivity.PopupGravity;
@@ -57,6 +58,7 @@ public class Frag1Sub extends Fragment {
     private LinearLayout category;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private static final int SEARCH_ADDRESS_ACTIVITY2 = 10001;
+    private static final int REQUEST_SEND_CODE = 2000;
     private static final int POPUP_TYPE = 2;
 
     private static String IP_ADDRESS = "river97.cafe24.com";
@@ -282,7 +284,6 @@ public class Frag1Sub extends Fragment {
             @Override
             public void onClick(View v) {
                 String id = "testID";//일단 고정값 나중에 로그인 정보 받을것
-                String userPhone = user_phone.getText().toString();
                 Log.i("test", "data:" + "이건 클릭확인 테스트");
 
 
@@ -329,6 +330,18 @@ public class Frag1Sub extends Fragment {
             progressDialog.dismiss();
             Log.d(TAG, "POST response = " + result);
 
+            String id = "testID";
+
+            Frag2Sub frag2Sub = new Frag2Sub();
+            Bundle bundle = new Bundle();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            bundle.putString("id", id);
+
+            frag2Sub.setArguments(bundle);
+            fragmentTransaction.replace(R.id.sub_frame_layout, frag2Sub); //itent에서 startactivty라고 봄ㄴ됨
+            fragmentTransaction.commit();
+
+            // 할일 다하고 비워줌
             user.setText("");
             obj.setText("");
             user_phone.setText("");
@@ -444,9 +457,11 @@ public class Frag1Sub extends Fragment {
                     if(result == PopupResult.LEFT){
                         // 작성 코드
                         Toast.makeText(getActivity(), "LEFT", Toast.LENGTH_SHORT).show();
-                        Log.i("test", "데이터가 DB에 성공적으로 저장되었음");
 
                         RequestComData();
+
+                        Log.i("test", "데이터가 DB에 성공적으로 저장되었음");
+
 
                     } else if(result == PopupResult.RIGHT){
                         // 작성 코드
