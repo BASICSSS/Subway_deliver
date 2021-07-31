@@ -1,10 +1,12 @@
 package com.example.subway_deliver;
 
+import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,7 @@ public class Frag2Sub extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     view =  inflater.inflate(R.layout.frag2_sub, container, false);
 
+
     recyclerView = (RecyclerView) view.findViewById(R.id.rvw);
     linearLayoutManager = new LinearLayoutManager(getActivity());
     recyclerView.setLayoutManager(linearLayoutManager);
@@ -92,8 +95,7 @@ public class Frag2Sub extends Fragment {
 
     }
 
-
-    return view;
+        return view;
     }
 
 

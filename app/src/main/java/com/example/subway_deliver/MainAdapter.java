@@ -1,5 +1,6 @@
 package com.example.subway_deliver;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
 
     private ArrayList<MainData> arrayList;
+    private static String TAG = "subway_deliver";
+
 
     public MainAdapter(ArrayList<MainData> arrayList) {
         this.arrayList = arrayList;
@@ -44,9 +47,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             public void onClick(View v) {
                 String curNo = holder.tv_delivery_no.getText().toString();
                 Toast.makeText(v.getContext(), curNo, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "tag num11 = " + v.getTag());
+
 
             }
+
         });
+
+
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
