@@ -71,7 +71,7 @@ public class Frag2Sub extends Fragment {
 //
 //    }
 
-    userId = "testId";
+    userId = "testId"; //나중에 가입만들어서 회원정보를 받아서 사용하자.
 
     if(userId == null){
 
@@ -202,6 +202,7 @@ public class Frag2Sub extends Fragment {
         String TAG_RECEIVER_PHONE ="receiverPhone";
         String TAG_RECEIVE_ADD="deliveryAdd";
         String TAG_REQDATE="reqDate";
+
 
         try{
 

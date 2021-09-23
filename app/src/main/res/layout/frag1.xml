@@ -17,12 +17,6 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="배송데이터 추가(임시)" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

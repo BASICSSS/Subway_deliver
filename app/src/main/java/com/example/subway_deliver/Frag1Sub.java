@@ -304,6 +304,7 @@ public class Frag1Sub extends Fragment {
 
 
 
+
             }
         });
 
@@ -466,6 +467,8 @@ public class Frag1Sub extends Fragment {
                     } else if(result == PopupResult.RIGHT){
                         // 작성 코드
                         Toast.makeText(getActivity(), "RIGHT", Toast.LENGTH_SHORT).show();
+                        Log.i("test", "취소");
+
 
                     }
                 }

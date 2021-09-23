@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,13 +15,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.os.FileUtils.copy;
 
 public class PopupActivity extends Activity {
+
+
     TextView tv_title;
     TextView tv_content; //원래 이거
     TextView tv_user;
@@ -83,6 +91,7 @@ public class PopupActivity extends Activity {
                 tv_content.setGravity(Gravity.RIGHT);
             }
 
+
             tv_title.setText(title);
             tv_content.setText(content);
             btn_ok.setText(buttonCenter);
@@ -91,6 +100,7 @@ public class PopupActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     //데이터 전달하기
+
                     Intent intent = new Intent();
                     intent.putExtra("result", PopupResult.CENTER);
                     setResult(RESULT_OK, intent);
@@ -255,6 +265,7 @@ public class PopupActivity extends Activity {
                 }
             });
 
+
             btn_right.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -280,8 +291,73 @@ public class PopupActivity extends Activity {
                     finish();
                 }
             });
+
+        } else if( type == PopupType.EMPTY_SELECT ){
+
+
+            setContentView(R.layout.activity_popup_empty_select);
+            title = intent.getStringExtra("title");
+            content = intent.getStringExtra("content");
+            buttonLeft = intent.getStringExtra("buttonLeft");
+            buttonRight = intent.getStringExtra("buttonRight");
+            gravity = (PopupGravity) intent.getSerializableExtra("gravity");
+
+            //UI 객체생성
+            tv_title = (TextView) findViewById(R.id.tv_title);
+            tv_content = (TextView) findViewById(R.id.tv_content);
+            btn_left = (Button) findViewById(R.id.btn_left);
+            btn_right = (Button) findViewById(R.id.btn_right);
+
+            if(gravity == PopupGravity.CENTER){
+                tv_title.setGravity(Gravity.CENTER);
+                tv_content.setGravity(Gravity.CENTER);
+            } else if(gravity == PopupGravity.LEFT){
+                tv_title.setGravity(Gravity.LEFT);
+                tv_content.setGravity(Gravity.LEFT);
+            } else if(gravity == PopupGravity.RIGHT){
+                tv_title.setGravity(Gravity.RIGHT);
+                tv_content.setGravity(Gravity.RIGHT);
+            }
+
+            tv_title.setText(title);
+            tv_content.setText(content);
+            btn_left.setText(buttonLeft);
+            btn_right.setText(buttonRight);
+
+            btn_right.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //데이터 전달하기
+                    Intent intent = new Intent();
+                    intent.putExtra("result", PopupResult.RIGHT);
+                    setResult(RESULT_OK, intent);
+
+                    //액티비티(팝업) 닫기
+                    finish();
+                }
+            });
+
+            btn_left.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //데이터 전달하기
+                    String order = intent.getStringExtra("order");
+                    Intent intent = new Intent();
+                    intent.putExtra("result", PopupResult.LEFT);
+                    intent.putExtra("idx", order);
+                    setResult(RESULT_OK, intent);
+
+                    //액티비티(팝업) 닫기
+                    finish();
+                }
+            });
+
+
         }
+
+//
     }
+
 
     private class DownloadFilesTask extends AsyncTask<String,Void,Bitmap> {
         @Override

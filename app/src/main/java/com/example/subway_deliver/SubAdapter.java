@@ -37,11 +37,10 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
     @Override
     public SubAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-
-
 //        context = parent.getContext(); //애니메이션
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_tmp_list, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
+
 
 
         return holder;
@@ -50,25 +49,8 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
+
         holder.onBind(arrayList.get(position), position);
-
-        holder.delivery_numTag.setText(arrayList.get(position).getDelivery_numTag());
-
-        holder.tvS_deliveryObj.setText(arrayList.get(position).getTvS_deliveryObj());
-        holder.tvS_deliveryObj.setText(arrayList.get(position).getTvS_deliveryObj());
-        holder.tvS_requestDate.setText(arrayList.get(position).getTvS_requestDate());
-        holder.tvS_deliveryAdd.setText(arrayList.get(position).getTvS_deliveryAdd());
-        holder.tvS_receiver.setText(arrayList.get(position).getTvS_receiver());
-
-        holder.tvD_user.setText(arrayList.get(position).getTvD_user());
-        holder.tvD_userPhone.setText(arrayList.get(position).getTvD_userPhone());
-        holder.tvD_pickupAdd.setText(arrayList.get(position).getTvD_pickupAdd());
-        holder.tvD_deliveryObj.setText(arrayList.get(position).getTvD_deliveryObj());
-        holder.tvD_objEstimate.setText(arrayList.get(position).getTvD_objEstimate());
-        holder.tvD_receiver.setText(arrayList.get(position).getTvD_receiver());
-        holder.tvD_receiverPhone.setText(arrayList.get(position).getTvD_receiverPhone());
-        holder.tvD_deliveryAdd.setText(arrayList.get(position).getTvD_deliveryAdd());
-        holder.tvD_requestDate.setText(arrayList.get(position).getTvD_requestDate());
 
 //        changeVisibility(selectedItems.get(position));
 
@@ -80,15 +62,21 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
             @Override
             public void onClick(View v) {
 
+
                 Log.d(TAG, "에니매이션테스트 = " + selectedItems.get(position));
                 Log.d(TAG, "posison 번호 = " + position);
 
 
                 if(selectedItems.get(position)){
+                    Log.d(TAG, "포지션 테스트1 " + selectedItems.get(position));
+                    Log.d(TAG, "포지션 테스트1 " + selectedItems);
+
 
                     selectedItems.delete(position);
 
                 }else{
+                    Log.d(TAG, "포지션 테스트2 " + selectedItems.get(position));
+                    Log.d(TAG, "포지션 테스트2 " + selectedItems);
 
                     selectedItems.delete(prePosition);
                     selectedItems.put(position, true);
@@ -96,11 +84,16 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
 
                 if(prePosition != -1) notifyItemChanged(prePosition);
                 notifyItemChanged(position);
-
+                Log.d(TAG, "포지션 테스트3 " + prePosition + position);
                 prePosition = position;
+                Log.d(TAG, "포지션 테스트4 " + prePosition + position);
+
+
 
             }
+
         });
+
 
     }
 
@@ -160,6 +153,7 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
             this.tvD_deliveryAdd = (TextView)itemView.findViewById(R.id.tvD_deliveryAdd);
             this.tvD_requestDate = (TextView)itemView.findViewById(R.id.tvD_requestDate);
 
+
             //여기 뷰홀더 온클릭에서는 아이템뷰안에 요소들 클릭이벤트 정의해주자
 
             this.delivery_numTag.setOnClickListener(new View.OnClickListener() {
@@ -175,19 +169,27 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
         }
 
 
-        private void changeVisibility(final boolean isExpanded) {
+        private void changeVisibility(final boolean isExpanded) { //애니메이션이 아주 정교하지 않은 나중에 손보자
             // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
-            ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, 600) : ValueAnimator.ofInt(600, 0);
+
+            int detailH = 1050;
+            int simpleH = 483;
+
+
+            ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, detailH) : ValueAnimator.ofInt(detailH, 0);
+
             // Animation이 실행되는 시간, n/1000초
-            va.setDuration(500);
+            va.setDuration(400);
             va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
+
                     // imageView의 높이 변경
                     detail_layout.getLayoutParams().height = (int) animation.getAnimatedValue();
                     detail_layout.requestLayout();
                     // imageView가 실제로 사라지게하는 부분
                     detail_layout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+                    simple_layout.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
                 }
             });
             // Animation start
@@ -198,9 +200,60 @@ public class SubAdapter extends RecyclerView.Adapter<SubAdapter.CustomViewHolder
         public void onBind(SubReqData subReqData, int position) {
             this.data = subReqData;
 
+            if(detail_layout.getVisibility() == View.GONE){
+
+                Log.d(TAG, "레이아웃 확인테스트@@ " + simple_layout.getVisibility() + detail_layout.getVisibility());
+
+
+            }
+
+
+
+            delivery_numTag.setText(arrayList.get(position).getDelivery_numTag());
+
+            tvS_deliveryObj.setText(arrayList.get(position).getTvS_deliveryObj());
+            tvS_deliveryObj.setText(arrayList.get(position).getTvS_deliveryObj());
+            tvS_requestDate.setText(arrayList.get(position).getTvS_requestDate());
+            tvS_deliveryAdd.setText(arrayList.get(position).getTvS_deliveryAdd());
+            tvS_receiver.setText(arrayList.get(position).getTvS_receiver());
+
+            tvD_user.setText(arrayList.get(position).getTvD_user());
+            tvD_userPhone.setText(arrayList.get(position).getTvD_userPhone());
+            tvD_pickupAdd.setText(arrayList.get(position).getTvD_pickupAdd());
+            tvD_deliveryObj.setText(arrayList.get(position).getTvD_deliveryObj());
+            tvD_objEstimate.setText(arrayList.get(position).getTvD_objEstimate());
+            tvD_receiver.setText(arrayList.get(position).getTvD_receiver());
+            tvD_receiverPhone.setText(arrayList.get(position).getTvD_receiverPhone());
+            tvD_deliveryAdd.setText(arrayList.get(position).getTvD_deliveryAdd());
+            tvD_requestDate.setText(arrayList.get(position).getTvD_requestDate());
+
+            Log.d(TAG, "바인드 테스트!! " + selectedItems.get(position) + position);
+
+
+            changeVisibility(selectedItems.get(position));
+
+
 
 
 
         }
+
+//        public void onWindowFocusChanged() { //레이아웃 높이 확인용
+////        super.onWindowFocusChanged(hasFocus);
+//
+//            int detail_layHeight = detail_layout.getHeight();
+//            int simple_layHeight = simple_layout.getHeight();
+//            int wd = simple_layout.getWidth();
+//            Log.d(TAG, "레이아웃 확인테스트@@ " + simple_layHeight +" " + detail_layHeight + " " + wd );
+//
+//
+//
+//        }
+
+
+
     }
+
+
 }
+
