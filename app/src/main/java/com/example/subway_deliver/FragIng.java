@@ -52,7 +52,7 @@ public class FragIng extends Fragment {
             intent.putExtra("title", "알림");
             intent.putExtra("content","존재하지 않는 요청건입니다.");
             intent.putExtra("buttonCenter", "확인");
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, 1); //
 
 
         }else {
