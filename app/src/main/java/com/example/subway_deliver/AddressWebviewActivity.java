@@ -24,7 +24,7 @@ public class AddressWebviewActivity extends AppCompatActivity {
         public void processDATA(String data) {
             Bundle extra = new Bundle();
             Intent intent = new Intent();
-            extra.putString("data", data);
+            extra.putString("data", data); //프래그먼트 송신시
             intent.putExtras(extra);
             setResult(RESULT_OK, intent);
             finish();

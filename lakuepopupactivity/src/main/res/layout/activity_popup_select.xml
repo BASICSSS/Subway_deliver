@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_user"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_obj"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_pickupAdd"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="3dp"
+            android:background="#C2C2C2" />
+
+        <TextView
+            android:id="@+id/tv_receiver"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receiverPhone"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receiverAdd"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_objType"
+            android:textSize="14dp"
+            android:textColor="#999999"
+            android:alpha="0.87"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_footer"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:alpha="0.87"
+            android:gravity="left"
+            android:text="배송을 요청 하시겠습니까?"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <!-- Notice -->
+
+    <View
+        android:background="#66bdbdbd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <!-- 닫기 버튼 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_left"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:background="#00000000"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"/>
+
+        <View
+            android:background="#66bdbdbd"
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_right"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:padding="16dp"
+            android:gravity="center"
+            android:background="#00000000"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"/>
+    </LinearLayout>
+    <!--// 닫기 버튼 -->
+</LinearLayout>

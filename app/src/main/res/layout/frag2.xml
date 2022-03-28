@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="리스트에서 승인된 받아온 정보 intent나 transaction"
-        android:textSize="15sp"/>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.appcompat.widget.LinearLayoutCompat>

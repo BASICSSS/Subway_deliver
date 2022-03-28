@@ -3,58 +3,83 @@ package com.example.subway_deliver;
 public class MainData {
 
 
-    private String tv_delivery_no;
-    private String tv_delivery_category;
-    private String tv_delivery_date;
-    private String tv_delivery_pickup;
-    private String tv_delivery_destination;
+//    private String receiver;
+//    private String userPhone;
+//    private String receiverPhone;
+    private String pickupAdd;
+    private String deliverAdd;
+    private String deliverObj;
+    private String deliverEst;
+    private String numTag;
+    private String requestDate;
+//    private String acceptDate;
 
-    public MainData(String tv_delivery_no, String tv_delivery_category, String tv_delivery_date, String tv_delivery_pickup, String tv_delivery_destination) {
-        this.tv_delivery_no = tv_delivery_no;
-        this.tv_delivery_category = tv_delivery_category;
-        this.tv_delivery_date = tv_delivery_date;
-        this.tv_delivery_pickup = tv_delivery_pickup;
-        this.tv_delivery_destination = tv_delivery_destination;
+    private String idx;
+
+//    public MainData(String pickupAdd, String deliverAdd, String deliverObj, String deliverEst, String numTag) {
+//        this.pickupAdd = pickupAdd;
+
+//        this.deliverAdd = deliverAdd;
+//        this.deliverObj = deliverObj;
+//        this.deliverEst = deliverEst;
+//        this.numTag = numTag;
+//    }
+
+
+    public String getIdx() {
+        return idx;
     }
 
-    public String getTv_delivery_no() {
-        return tv_delivery_no;
+    public void setIdx(String idx) {
+        this.idx = idx;
     }
 
-    public void setTv_delivery_no(String tv_delivery_no) {
-        this.tv_delivery_no = tv_delivery_no;
+    public String getRequestDate() {
+        return requestDate;
     }
 
-    public String getTv_delivery_category() {
-        return tv_delivery_category;
+    public void setRequestDate(String requestDate) {
+        this.requestDate = requestDate;
     }
 
-    public void setTv_delivery_category(String tv_delivery_category) {
-        this.tv_delivery_category = tv_delivery_category;
+    public String getNumTag() {
+        return numTag;
     }
 
-    public String getTv_delivery_date() {
-        return tv_delivery_date;
+    public void setNumTag(String numTag) {
+        this.numTag = numTag;
     }
 
-    public void setTv_delivery_date(String tv_delivery_date) {
-        this.tv_delivery_date = tv_delivery_date;
+    public String getPickupAdd() {
+        return pickupAdd;
     }
 
-    public String getTv_delivery_pickup() {
-        return tv_delivery_pickup;
+    public void setPickupAdd(String pickupAdd) {
+        this.pickupAdd = pickupAdd;
     }
 
-    public void setTv_delivery_pickup(String tv_delivery_pickup) {
-        this.tv_delivery_pickup = tv_delivery_pickup;
+    public String getDeliverAdd() {
+        return deliverAdd;
     }
 
-    public String getTv_delivery_destination() {
-        return tv_delivery_destination;
+    public void setDeliverAdd(String deliverAdd) {
+        this.deliverAdd = deliverAdd;
     }
 
-    public void setTv_delivery_destination(String tv_delivery_destination) {
-        this.tv_delivery_destination = tv_delivery_destination;
+    public String getDeliverObj() {
+        return deliverObj;
+    }
+
+    public void setDeliverObj(String deliverObj) {
+        this.deliverObj = deliverObj;
+    }
+
+    public String getDeliverEst() {
+        return deliverEst;
+    }
+
+    public void setDeliverEst(String deliverEst) {
+        this.deliverEst = deliverEst;
     }
 }
 
