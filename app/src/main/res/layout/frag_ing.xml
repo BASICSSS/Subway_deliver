@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="22dp"
+                android:text="NO. 000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"
+                android:text="발송인 정보" />
+
+            <FrameLayout
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/info_frame_type2"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="3">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="16dp"
+                            android:text="이름" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+
+                            android:textSize="16dp"
+                            android:text="전화번호" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+
+                            android:textSize="16dp"
+                            android:text="픽업주소" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="10dp"
+
+                            android:textSize="16dp"
+                            android:text="요청날짜" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="7">
+
+
+                        <TextView
+                            android:id="@+id/ing_userName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/ing_userPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/ing_pickupAdd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/ing_requestDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+                android:textSize="18dp"
+                android:text="수취인 정보" />
+
+            <FrameLayout
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/info_frame_type2"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="3">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="16dp"
+                            android:text="이름" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+
+                            android:textSize="16dp"
+                            android:text="전화번호" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="16dp"
+                            android:text="배송주소" />
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="7">
+
+
+                        <TextView
+                            android:id="@+id/ing_receiverName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:textSize="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/ing_receiverPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/ing_deliveryAdd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+                android:textSize="18dp"
+                android:text="배송물품 정보" />
+
+            <FrameLayout
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/info_frame_type2"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="3">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="16dp"
+                            android:text="물품" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+
+                            android:textSize="16dp"
+                            android:text="종류" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+
+                            android:textSize="16dp"
+                            android:text="믈픔견적" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="16dp"
+                            android:text="베송비용" />
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="7">
+
+
+                        <TextView
+                            android:id="@+id/ing_objName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:textSize="16dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/ing_objType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/ing_estimate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/ing_totalCost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="16dp"
+                            android:text="TextView" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+    </LinearLayout>
+</LinearLayout>

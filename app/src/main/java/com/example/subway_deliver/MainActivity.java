@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private Frag1 frag1;
     private Frag2 frag2;
+    private FragIng fragIng;
 ///////////////////// 요기서부터는 서버데이터 가져오는것
     private TextView tv_outPut;
 
@@ -65,8 +66,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_list:
                         setFrag(0);
                         break;
-                    case R.id.action_mylist:
+                    case R.id.action_delivery_ing:
                         setFrag(1);
+                        break;
+                    case R.id.action_mylist:
+                        setFrag(2);
                         break;
                 }
 
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
         frag1 = new Frag1(); //객체생성
         frag2 = new Frag2(); //객체생성
+        fragIng = new FragIng();
         setFrag(0); // 첫프레그화면을
 
         ///////////////////////////////////////////////////////////////////////////
@@ -93,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 1:
+                ft.replace(R.id.main_frame_layout, fragIng);
+                ft.commit();
+                break;
+
+            case 2:
                 ft.replace(R.id.main_frame_layout, frag2);
                 ft.commit();
                 break;

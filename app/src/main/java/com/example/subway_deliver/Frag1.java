@@ -44,6 +44,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class Frag1 extends Fragment {
 
+    private String order;
+
     private String userId;
     private TextView orderNum;
     private String jsonData;
@@ -96,7 +98,7 @@ public class Frag1 extends Fragment {
             intent.putExtra("title", "알림");
             intent.putExtra("content","로그인을 먼저 진행하여 주십시오.");
             intent.putExtra("buttonCenter", "확인");
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, 1);//dddd
 
 
 
@@ -338,7 +340,27 @@ public class Frag1 extends Fragment {
 
             Log.d(TAG, "POST response = " + result);
 
-            //요기도 팝업처리해야겟다.
+
+            FragIng fragIng = new FragIng();
+            Bundle bundle = new Bundle();
+            FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            bundle.putString("curr_idx", order);
+
+            fragIng.setArguments(bundle);
+            fragmentTransaction.replace(R.id.main_frame_layout, fragIng);
+            fragmentTransaction.commit();
+
+            //음 각자의 데이터베이스가 필요할라나..?
+
+
+            if(!result.equals("0")){
+
+                Toast.makeText(getActivity(), "이미 승인된 요청건입니다. 다른 요청을 승인하십시오.", Toast.LENGTH_SHORT).show();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(Frag1.this).attach(Frag1.this).commit();
+
+            }
 
         }
 
@@ -422,7 +444,7 @@ public class Frag1 extends Fragment {
             case 5:
                 if(resultCode == RESULT_OK){
                     PopupResult result = (PopupResult) intent.getSerializableExtra("result");
-                    String order = intent.getStringExtra("idx");
+                    order = intent.getStringExtra("idx");
 
                     if(result == PopupResult.LEFT){
                         // 작성 코드
@@ -434,6 +456,7 @@ public class Frag1 extends Fragment {
                         Log.d(TAG, "확인 = " + order + deliveryMan);
 
                         task.execute("https://"  + IP_ADDRESS + "/accept_update.php", order, deliveryMan);
+
 
 
 

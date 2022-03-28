@@ -8,10 +8,17 @@
         android:title="리스트"/>
 
     <item
+        android:id="@+id/action_delivery_ing"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_shipping_24"
+        android:title="현재 배송"/>
+
+    <item
         android:id="@+id/action_mylist"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_playlist_add_check_24"
         android:title="마이리스트"/>
+
 
 
 </menu>

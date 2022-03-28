@@ -2,12 +2,18 @@ package com.example.subway_deliver;
 
 public class MainData {
 
+
+//    private String receiver;
+//    private String userPhone;
+//    private String receiverPhone;
     private String pickupAdd;
     private String deliverAdd;
     private String deliverObj;
     private String deliverEst;
     private String numTag;
     private String requestDate;
+//    private String acceptDate;
+
     private String idx;
 
 //    public MainData(String pickupAdd, String deliverAdd, String deliverObj, String deliverEst, String numTag) {

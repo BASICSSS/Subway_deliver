@@ -2,6 +2,7 @@ package com.example.subway_deliver;
 
 import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.AsyncTask;
@@ -48,6 +49,7 @@ public class Frag2Sub extends Fragment {
     private SubAdapter subAdapter;
     private static String IP_ADDRESS = "river97.cafe24.com";
     private static String TAG = "subway_deliver";
+    public static Context mContext;
 
     @Nullable
     @Override
@@ -64,6 +66,7 @@ public class Frag2Sub extends Fragment {
 
     subAdapter =  new SubAdapter(arrayList); //어댑터로부터 받은 것을 어레이리스트에 저장함
     recyclerView.setAdapter(subAdapter); //그 어댑터를 리사이클러뷰에 셋팅
+    mContext = getContext();
 
 
 //    if(getArguments() != null){ //나중에는 어차피 로그인시에 계속 id가 접속되있는 상태로 갈것기기 때문에 이거 없이 그냥 받기만 하면됨
